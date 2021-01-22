@@ -9,6 +9,7 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
 done
 ROOTDIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 # Build manager into a single script
+./clean.sh
 mkdir -p $ROOTDIR/build
 OUTFILE=$ROOTDIR/build/dotfile-manager
 source $ROOTDIR/env/bin/activate
