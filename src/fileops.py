@@ -99,10 +99,7 @@ def backup(file_path):
     return (FileOperation.BACKUP, file_path)
 
 
-def symlink(source_path, link_path, absolute=False):
-    if absolute:
-        source_path = path.abspath(source_path)
-        link_path = path.abspath(link_path)
+def symlink(source_path, link_path):
     return (FileOperation.SYMLINK, source_path, link_path)
 
 

@@ -9,12 +9,24 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
 done
 ROOTDIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 # Build manager into a single script
+source $ROOTDIR/env/bin/activate
 ./clean.sh
 mkdir -p $ROOTDIR/build
-OUTFILE=$ROOTDIR/build/dotfile-manager
-source $ROOTDIR/env/bin/activate
+
+echo "Building dotfile-manager..."
+DOTFILE_MANAGER=$ROOTDIR/build/dotfile-manager
 stickytape src/dotfile-manager.py \
   --add-python-path $ROOTDIR/src \
   --copy-shebang \
-  --output-file $OUTFILE
-chmod ug+x $OUTFILE
+  --output-file $DOTFILE_MANAGER
+chmod ug+x $DOTFILE_MANAGER
+
+echo "Building smartlink..."
+SMARTLINK=$ROOTDIR/build/smartlink
+stickytape src/smartlink.py \
+  --add-python-path $ROOTDIR/src \
+  --copy-shebang \
+  --output-file $SMARTLINK
+chmod ug+x $SMARTLINK
+
+echo "Done."

@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import argparse
-import os
 from os import path
 from linker import link_to_dotfiles_dir, link_files, home_dir
 from fileops import execute_file_operations, print_file_operations, has_file_operations
