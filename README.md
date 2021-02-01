@@ -9,14 +9,21 @@ WARNING: Won't work on Windows.
 * `dotfile-manager` - manages dotfile links to user's home directory.
 * `smartlink` - creates symbolic link only if it's not already linked and backups any existing file of the same name as new link.
 
-## Building
+## Development
 Python script is compiled into a single file with a python shebang for easier distribution. `stickytape` module is used to perform this compilation.
 
+### Prerequisites
+To install all the requirements:
+`pip install -r requirements.txt`
+
+Requirements can be updated with:
+`pip freeze > requirements.txt`
+
 ### Assumptions
-Scripts assume the following convetions:
+Project management scripts assume the following convetions:
 * `env` directory in project root contains project's virtualenv
 * `buld` directory in project root is automatically created and removed when building the project
-* `test-data` directory in project root is automatically recreated whenever a test script is run
+* `test-temp` directory in project root is automatically recreated whenever a test script is run
 
 ### Project Scripts
 * `build.sh` - builds manager into a single python script you can put into your dotfiles project

@@ -10,23 +10,21 @@ done
 ROOTDIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 # Build manager into a single script
 source $ROOTDIR/env/bin/activate
-./clean.sh
+$ROOTDIR/clean.sh
 mkdir -p $ROOTDIR/build
 
+function build_script {
+	stickytape $1 \
+		--add-python-path $ROOTDIR/src \
+		--copy-shebang \
+		--output-file $2
+	chmod ug+x $2
+}
+
 echo "Building dotfile-manager..."
-DOTFILE_MANAGER=$ROOTDIR/build/dotfile-manager
-stickytape src/dotfile-manager.py \
-  --add-python-path $ROOTDIR/src \
-  --copy-shebang \
-  --output-file $DOTFILE_MANAGER
-chmod ug+x $DOTFILE_MANAGER
+build_script "src/dotfile-manager.py" "$ROOTDIR/build/dotfile-manager"
 
 echo "Building smartlink..."
-SMARTLINK=$ROOTDIR/build/smartlink
-stickytape src/smartlink.py \
-  --add-python-path $ROOTDIR/src \
-  --copy-shebang \
-  --output-file $SMARTLINK
-chmod ug+x $SMARTLINK
+build_script "src/smartlink.py" "$ROOTDIR/build/smartlink"
 
 echo "Done."

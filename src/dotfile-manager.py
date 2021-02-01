@@ -27,7 +27,6 @@ link_path = path.join(link_directory, options.link_name)
 task_count = 0
 
 
-
 # First create link to dotfiles. Otherwise if dotfiles project got moved, it would try to relink all the files.
 dir_operations = link_to_dotfiles_dir(dotfiles_directory, link_path, options.verbose)
 if has_file_operations(dir_operations):
